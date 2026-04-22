@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mintworks 🏭</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<!-- ✅ PROJECTS DATA — edit projects.js, never this file -->
+<script src="projects.js"></script>
+
+<style>
+:root {
+  /* Sky-blue background palette */
+  --bg: #B9E0F5;
+  --bg2: #A7D5F0;
+  --surface: #FFFFFF;
+  --surface-soft: #EEF7FC;
+  --border: #7FBDE4;
+  --border-soft: #C8E4F4;
+
+  /* Orange — primary accent */
+  --orange: #F97316;
+  --orange-light: #FED7AA;
+  --orange-dark: #C2410C;
+
+  /* Blue — primary accent */
+  --blue: #1E3A8A;
+  --blue-mid: #2563EB;
+  --blue-light: #DBEAFE;
+
+  /* Yellow accent */
+  --yellow: #FBBF24;
+  --yellow-light: #FEF3C7;
+
+  --text: #0F172A;
+  --muted: #475569;
+  --dim: #94A3B8;
+
+  --green: #16A34A;
+  --red: #DC2626;
+
+  --display: 'Fredoka', sans-serif;
+  --brand: 'Bangers', cursive;
+  --body: 'Nunito', sans-serif;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-xs: 6px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--body);
+  cursor:none;
+  background-image:
+    linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%);
+}
+
+/* Cloud pattern background */
+body::before{
+  content:'';position:fixed;inset:0;
+  background-image:
+    radial-gradient(ellipse 60px 25px at 15% 22%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(ellipse 80px 30px at 85% 18%, rgba(255,255,255,0.35), transparent),
+    radial-gradient(ellipse 70px 28px at 55% 8%, rgba(255,255,255,0.3), transparent),
+    radial-gradient(ellipse 90px 32px at 25% 75%, rgba(255,255,255,0.3), transparent),
+    radial-gradient(ellipse 75px 28px at 78% 85%, rgba(255,255,255,0.35), transparent);
+  pointer-events:none;z-index:0;
+}
+
+.cur{width:16px;height:16px;background:var(--orange);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;mix-blend-mode:multiply;}
+.cur-r{width:36px;height:36px;border:2.5px solid var(--blue-mid);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;opacity:0.4;}
+
+.shell{display:grid;grid-template-rows:72px 1fr;grid-template-columns:240px 1fr;height:100vh;position:relative;z-index:1;}
+
+/* ── HEADER ── */
+header{
+  grid-column:1/-1;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 28px;
+  background:var(--surface);
+  border-bottom:3px solid var(--blue);
+  box-shadow:0 3px 0 var(--orange);
+  position:relative;z-index:10;
+}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;cursor:none;}
+.logo-mascot{
+  width:48px;height:48px;
+  border-radius:50%;
+  background:var(--blue-light);
+  border:2.5px solid var(--blue);
+  box-shadow:0 3px 0 var(--blue);
+  transition:transform .15s,box-shadow .15s;
+  display:flex;align-items:flex-end;justify-content:center;
+  overflow:hidden;
+  flex-shrink:0;
+}
+.logo-mascot img{width:90%;height:auto;object-fit:contain;transform:translateY(2px);}
+.logo:hover .logo-mascot{transform:translateY(2px);box-shadow:0 1px 0 var(--blue);}
+.logo-text{font-family:var(--brand);font-size:32px;font-weight:400;color:var(--text);letter-spacing:0.04em;line-height:1;padding-top:4px;}
+.logo-text .mint{color:var(--orange);}
+.logo-text .works{color:var(--blue-mid);}
+
+.header-right{display:flex;align-items:center;gap:14px;}
+.live-pill{
+  display:flex;align-items:center;gap:7px;
+  background:var(--yellow-light);
+  border:2px solid var(--yellow);
+  border-radius:999px;
+  padding:5px 14px;
+  font-family:var(--display);font-size:13px;font-weight:600;
+  color:#92400E;
+}
+.dot-live{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+
+.btn-x{
+  display:flex;align-items:center;gap:7px;
+  background:var(--blue);
+  color:#fff;border:none;
+  border-radius:var(--radius-sm);
+  padding:8px 16px;
+  font-family:var(--display);font-size:14px;font-weight:600;
+  text-decoration:none;
+  box-shadow:0 3px 0 #0C1D4D;
+  transition:transform .15s,box-shadow .15s;
+  cursor:none;
+}
+.btn-x:hover{transform:translateY(2px);box-shadow:0 1px 0 #0C1D4D;}
+.btn-x svg{width:14px;height:14px;fill:currentColor;}
+
+/* ── SIDEBAR ── */
+aside{
+  background:var(--surface);
+  border-right:3px solid var(--blue);
+  display:flex;flex-direction:column;
+  padding:24px 16px;
+  overflow:hidden;
+  position:relative;
+}
+.gear-deco{position:absolute;bottom:60px;right:-20px;width:80px;height:80px;opacity:0.10;animation:spin 20s linear infinite;}
+@keyframes spin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+
+.aside-section-label{font-family:var(--display);font-size:11px;font-weight:600;color:var(--dim);letter-spacing:0.12em;text-transform:uppercase;padding:0 8px 12px;}
+nav{display:flex;flex-direction:column;gap:4px;}
+
+.tab-btn{
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--display);font-size:16px;font-weight:600;
+  color:var(--muted);
+  background:none;border:none;cursor:none;
+  padding:10px 12px;text-align:left;border-radius:var(--radius-sm);
+  transition:all .15s;width:100%;
+}
+.tab-btn .tab-icon{font-size:18px;width:26px;text-align:center;}
+.tab-btn:hover{background:var(--blue-light);color:var(--blue);}
+
+.tab-btn.active{
+  background:var(--orange);
+  color:#fff;
+  box-shadow:0 3px 0 var(--orange-dark);
+  transform:translateY(-1px);
+}
+.tab-btn.active:hover{background:var(--orange);color:#fff;transform:translateY(0);box-shadow:0 1px 0 var(--orange-dark);}
+
+.aside-divider{height:2px;background:var(--border-soft);border-radius:2px;margin:16px 8px;}
+.aside-bottom{margin-top:auto;padding:16px 8px 0;}
+.aside-nfa{
+  background:var(--yellow-light);
+  border:2px solid var(--yellow);
+  border-radius:var(--radius-sm);
+  padding:12px;
+  font-size:12px;color:#92400E;
+  line-height:1.5;font-weight:600;
+}
+.aside-nfa .nfa-label{font-family:var(--display);font-size:13px;margin-bottom:4px;display:block;}
+
+/* ── MAIN ── */
+main{overflow-y:auto;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+main::-webkit-scrollbar{width:6px;}
+main::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+
+.panel{display:none;padding:40px 44px;animation:popIn .3s cubic-bezier(.34,1.56,.64,1);}
+.panel.active{display:block;}
+@keyframes popIn{from{opacity:0;transform:scale(0.97) translateY(10px);}to{opacity:1;transform:scale(1) translateY(0);}}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-5deg);}50%{transform:translateY(-12px) rotate(5deg);}}
+@keyframes bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);}}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+
+/* ── HOME ── */
+.home-hero{
+  background:var(--surface);
+  border-radius:var(--radius);
+  border:3px solid var(--blue);
+  box-shadow:6px 6px 0 var(--orange);
+  padding:44px 48px;
+  margin-bottom:24px;
+  position:relative;
+  overflow:hidden;
+}
+
+/* Mascot decoration (big in bg) */
+.hero-mascot-bg{
+  position:absolute;
+  right:20px;bottom:-10px;
+  width:220px;height:auto;
+  opacity:0.85;
+  animation:bounce 3s ease-in-out infinite;
+  pointer-events:none;
+  z-index:1;
+}
+
+.home-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--blue-light);
+  border:2px solid var(--blue-mid);
+  border-radius:999px;
+  padding:4px 14px;
+  font-family:var(--display);font-size:13px;font-weight:600;
+  color:var(--blue);
+  margin-bottom:20px;
+}
+
+.home-headline{
+  font-family:var(--display);
+  font-size:clamp(52px,7vw,88px);
+  font-weight:700;
+  line-height:1;
+  color:var(--text);
+  margin-bottom:8px;
+  position:relative;
+  z-index:2;
+}
+.home-headline .orange{color:var(--orange);}
+.home-headline .blue{color:var(--blue-mid);}
+
+.home-sub{font-size:17px;color:var(--muted);line-height:1.7;max-width:500px;margin:20px 0 28px;position:relative;z-index:2;}
+
+.home-tags{display:flex;flex-wrap:wrap;gap:8px;position:relative;z-index:2;}
+.htag{
+  background:var(--surface-soft);
+  border:2px solid var(--border-soft);
+  border-radius:999px;
+  padding:5px 14px;
+  font-family:var(--display);font-size:13px;font-weight:600;
+  color:var(--muted);
+}
+.htag.orange-tag{background:var(--orange-light);border-color:var(--orange);color:var(--orange-dark);}
+.htag.blue-tag{background:var(--blue-light);border-color:var(--blue-mid);color:var(--blue);}
+
+.home-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:24px;}
+.stat-card{
+  background:var(--surface);
+  border:3px solid var(--blue);
+  border-radius:var(--radius-sm);
+  box-shadow:4px 4px 0 var(--orange);
+  padding:22px 20px;
+  text-align:center;
+  transition:transform .15s,box-shadow .15s;
+}
+.stat-card:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--orange);}
+.stat-card.blue-accent{box-shadow:4px 4px 0 var(--blue-mid);}
+.stat-card.blue-accent:hover{box-shadow:6px 6px 0 var(--blue-mid);}
+.stat-n{font-family:var(--display);font-size:48px;font-weight:700;line-height:1;margin-bottom:4px;}
+.stat-n.orange{color:var(--orange);}
+.stat-n.blue{color:var(--blue-mid);}
+.stat-l{font-size:12px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;}
+
+/* ── PROJECTS ── */
+.projects-grid{display:flex;flex-direction:column;gap:16px;}
+
+.project-card{
+  background:var(--surface);
+  border:3px solid var(--blue);
+  border-radius:var(--radius);
+  box-shadow:5px 5px 0 var(--orange);
+  overflow:hidden;
+  transition:transform .15s,box-shadow .15s;
+}
+.project-card:hover{transform:translate(-2px,-2px);box-shadow:7px 7px 0 var(--orange);}
+
+.card-header{display:flex;align-items:center;gap:16px;padding:20px 24px;border-bottom:2px solid var(--border-soft);}
+
+.card-logo-img{width:56px;height:56px;border-radius:12px;object-fit:cover;border:2px solid var(--blue);flex-shrink:0;}
+.card-logo-placeholder{
+  width:56px;height:56px;border-radius:12px;
+  background:var(--orange);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-size:26px;font-weight:700;
+  color:#fff;flex-shrink:0;
+  box-shadow:0 3px 0 var(--orange-dark);
+  border:2px solid var(--blue);
+}
+
+.card-info{flex:1;min-width:0;}
+.card-name-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px;}
+.card-name{font-family:var(--display);font-size:26px;font-weight:700;line-height:1;color:var(--text);}
+.card-ticker{
+  background:var(--blue-light);
+  color:var(--blue);
+  font-family:var(--display);font-size:13px;font-weight:600;
+  padding:2px 10px;border-radius:999px;
+  border:2px solid var(--blue-mid);
+}
+.card-desc{font-size:13px;color:var(--muted);line-height:1.6;}
+
+.card-status{font-family:var(--display);font-size:13px;font-weight:600;padding:5px 14px;border-radius:999px;border:2px solid;flex-shrink:0;}
+.st-live{background:#DCFCE7;color:var(--green);border-color:var(--green);}
+.st-dev{background:#FEF3C7;color:#B45309;border-color:var(--yellow);}
+.st-soon{background:var(--surface-soft);color:var(--dim);border-color:var(--dim);}
+
+.card-metrics{display:grid;grid-template-columns:repeat(4,1fr);}
+.metric{padding:14px 16px;border-right:2px solid var(--border-soft);border-bottom:2px solid var(--border-soft);}
+.metric:last-child{border-right:none;}
+.metric-label{font-size:10px;color:var(--dim);font-weight:700;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:4px;}
+.metric-value{font-family:var(--display);font-size:18px;font-weight:700;color:var(--text);}
+.metric-value.pos{color:var(--green);}
+.metric-value.neg{color:var(--red);}
+.metric-value.loading{color:var(--dim);animation:blink 1.2s infinite;}
+
+.card-footer{display:flex;align-items:center;gap:8px;padding:14px 24px;flex-wrap:wrap;}
+.card-link{
+  font-family:var(--display);font-size:13px;font-weight:600;
+  color:var(--blue);
+  border:2px solid var(--border-soft);
+  border-radius:var(--radius-sm);
+  padding:5px 14px;
+  text-decoration:none;transition:all .15s;
+  background:var(--surface);
+}
+.card-link:hover{border-color:var(--orange);color:var(--orange-dark);background:var(--orange-light);}
+.card-tags{display:flex;gap:6px;flex-wrap:wrap;margin-left:auto;}
+.ptag{font-size:11px;font-weight:600;color:var(--muted);background:var(--surface-soft);border:2px solid var(--border-soft);border-radius:999px;padding:2px 10px;}
+
+.coming-card{
+  background:var(--surface-soft);
+  border:3px dashed var(--border);
+  border-radius:var(--radius);
+  padding:28px;text-align:center;
+  transition:all .2s;
+}
+.coming-card:hover{border-color:var(--orange);background:var(--orange-light);}
+.coming-emoji{font-size:36px;margin-bottom:8px;display:block;animation:float 3s ease-in-out infinite;}
+.coming-name{font-family:var(--display);font-size:22px;font-weight:700;color:var(--muted);margin-bottom:4px;}
+.coming-sub{font-size:13px;color:var(--dim);}
+.coming-sub a{color:var(--orange);font-weight:700;text-decoration:none;}
+
+/* ── ABOUT ── */
+.about-box{
+  background:var(--surface);
+  border:3px solid var(--blue);
+  border-radius:var(--radius);
+  box-shadow:5px 5px 0 var(--orange);
+  padding:32px;margin-bottom:16px;
+}
+.about-box.orange-accent{box-shadow:5px 5px 0 var(--orange);}
+.about-box.blue-accent{box-shadow:5px 5px 0 var(--blue-mid);}
+
+.about-box h2{font-family:var(--display);font-size:32px;font-weight:700;color:var(--text);margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.about-body-text{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:12px;}
+.about-body-text strong{color:var(--text);font-weight:700;}
+
+.principles-list{display:flex;flex-direction:column;gap:10px;margin-top:8px;}
+.principle{display:flex;gap:14px;background:var(--surface-soft);border:2px solid var(--border-soft);border-radius:var(--radius-sm);padding:16px;transition:all .15s;}
+.principle:hover{border-color:var(--orange);background:var(--orange-light);}
+.principle-num{
+  width:34px;height:34px;
+  background:var(--orange);color:#fff;
+  border-radius:8px;
+  box-shadow:0 2px 0 var(--orange-dark);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--display);font-size:16px;font-weight:700;
+  flex-shrink:0;margin-top:1px;
+}
+.principle:nth-child(even) .principle-num{background:var(--blue-mid);box-shadow:0 2px 0 var(--blue);}
+.principle h4{font-family:var(--display);font-size:17px;font-weight:700;margin-bottom:4px;color:var(--text);}
+.principle p{font-size:13px;color:var(--muted);line-height:1.6;}
+
+/* ── DISCLAIMER ── */
+.disc-card{
+  background:var(--surface);
+  border:3px solid var(--blue);
+  border-radius:var(--radius);
+  box-shadow:5px 5px 0 var(--orange);
+  padding:28px 32px;margin-bottom:14px;
+}
+.disc-card:nth-child(even){box-shadow:5px 5px 0 var(--blue-mid);}
+.disc-card h3{font-family:var(--display);font-size:22px;font-weight:700;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+.disc-card p{font-size:14px;color:var(--muted);line-height:1.8;}
+.disc-card p strong{color:var(--text);font-weight:700;}
+
+.panel-header{display:flex;align-items:center;gap:14px;margin-bottom:24px;}
+.panel-title{font-family:var(--display);font-size:40px;font-weight:700;line-height:1;color:var(--text);}
+.panel-emoji{font-size:36px;}
+.panel-sub{font-size:13px;color:var(--muted);font-weight:600;margin-top:2px;}
+
+@media(max-width:700px){
+  .shell{grid-template-columns:1fr;grid-template-rows:64px 56px 1fr;}
+  aside{flex-direction:row;border-right:none;border-bottom:3px solid var(--blue);padding:8px;overflow-x:auto;scrollbar-width:none;}
+  aside::-webkit-scrollbar{display:none;}
+  .aside-section-label,.aside-divider,.aside-bottom,.gear-deco{display:none;}
+  nav{flex-direction:row;gap:6px;width:max-content;}
+  .tab-btn{padding:8px 14px;white-space:nowrap;font-size:14px;}
+  .tab-btn .tab-icon{display:none;}
+  main{grid-row:3;}
+  .panel{padding:20px 16px;}
+  .card-metrics{grid-template-columns:1fr 1fr;}
+  .home-hero{padding:28px 24px;}
+  .hero-mascot-bg{width:150px;height:150px;right:-20px;bottom:-20px;}
+}
+</style>
+</head>
+<body>
+
+<div class="cur" id="cur"></div>
+<div class="cur-r" id="curR"></div>
+
+<div class="shell">
+
+  <!-- HEADER -->
+  <header>
+    <a href="#" class="logo" onclick="switchTab('home',document.querySelector('.tab-btn'));return false;">
+      <div class="logo-mascot">
+        <img src="mascot.png" alt="MintWorks mascot">
+      </div>
+      <div class="logo-text"><span class="mint">Mint</span><span class="works">Works</span></div>
+    </a>
+    <div class="header-right">
+      <div class="live-pill"><div class="dot-live"></div> Building right now!</div>
+      <a href="https://x.com/lovesickboy24" target="_blank" class="btn-x">
+        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        @lovesickboy24
+      </a>
+    </div>
+  </header>
+
+  <!-- SIDEBAR -->
+  <aside>
+    <div class="aside-section-label">Menu</div>
+    <nav>
+      <button class="tab-btn active" onclick="switchTab('home',this)"><span class="tab-icon">🏠</span> Home</button>
+      <button class="tab-btn" onclick="switchTab('projects',this)"><span class="tab-icon">🚀</span> Projects</button>
+      <button class="tab-btn" onclick="switchTab('about',this)"><span class="tab-icon">👷</span> About</button>
+      <button class="tab-btn" onclick="switchTab('disclaimer',this)"><span class="tab-icon">📋</span> Disclaimer</button>
+    </nav>
+    <div class="aside-divider"></div>
+    <div class="aside-bottom">
+      <div class="aside-nfa">
+        <span class="nfa-label">⚠️ NFA</span>
+        Not financial advice. Always DYOR before investing!
+      </div>
+    </div>
+    <svg class="gear-deco" viewBox="0 0 100 100" fill="none">
+      <path d="M43.3 5.5l-3.1 9.5a35 35 0 00-7.8 3.2l-9.8-2.5L14 24l6 8a35 35 0 00-1.6 8.7L9 45.5v9.5l9 4.7a35 35 0 001.9 8.6l-5.6 8.3 8.6 8.6 8.3-5.6a35 35 0 008.6 1.9l4.7 9H54l4.7-9a35 35 0 008.6-1.9l8.3 5.6 8.6-8.6-5.6-8.3a35 35 0 001.9-8.6L90 55v-9.5l-9.4-4.8A35 35 0 0079 32l6-8-8.6-8.3-9.8 2.5a35 35 0 00-7.8-3.2l-3.1-9.5h-12z" stroke="var(--orange)" stroke-width="3"/>
+      <circle cx="50" cy="50" r="15" stroke="var(--orange)" stroke-width="3"/>
+    </svg>
+  </aside>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- HOME -->
+    <div class="panel active" id="panel-home">
+      <div class="home-hero">
+        <!-- Mascot decoration in hero -->
+        <img class="hero-mascot-bg" src="mascot.png" alt="">
+
+        <div class="home-eyebrow">🏭 The Memecoin Factory</div>
+        <div class="home-headline">We Make<br><span class="orange">Coins</span> <span class="blue">Here.</span></div>
+        <p class="home-sub">
+          An independent builder shipping meme coins and crypto tools — in public, with full transparency. No VC. No shadow team. Just vibes and on-chain proof.
+        </p>
+        <div class="home-tags">
+          <span class="htag orange-tag">🪙 Meme Coins</span>
+          <span class="htag blue-tag">📱 Telegram Apps</span>
+          <span class="htag orange-tag">🔥 Pump.fun</span>
+          <span class="htag blue-tag">⚡ Solana</span>
+          <span class="htag">👀 100% Transparent</span>
+        </div>
+      </div>
+
+      <div class="home-stats">
+        <div class="stat-card">
+          <div class="stat-n orange" id="stat-count">—</div>
+          <div class="stat-l">🚀 Projects Live</div>
+        </div>
+        <div class="stat-card blue-accent">
+          <div class="stat-n blue">∞</div>
+          <div class="stat-l">💡 Ideas Brewing</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="panel" id="panel-projects">
+      <div class="panel-header">
+        <div class="panel-emoji">🚀</div>
+        <div>
+          <div class="panel-title">Projects</div>
+          <div class="panel-sub" id="projects-sub">Loading the factory floor...</div>
+        </div>
+      </div>
+      <div class="projects-grid" id="projects-grid"></div>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="panel" id="panel-about">
+      <div class="panel-header">
+        <div class="panel-emoji">👷</div>
+        <div><div class="panel-title">About</div><div class="panel-sub">The person running this factory</div></div>
+      </div>
+      <div class="about-box">
+        <h2>🏭 Who's Behind This?</h2>
+        <p class="about-body-text">Solo crypto builder. I launch meme coins and build tools — <strong>fast, in public, and with zero BS.</strong> No hidden wallets, no undisclosed positions, no surprise rugs.</p>
+        <p class="about-body-text">MintWorks is my studio. Every project here is something I'm personally involved in. If I hold it, I say it. If I earn from it, I disclose it.</p>
+        <p class="about-body-text">No VC. No fifty-person team. Just a builder with <strong>skin in the game</strong>, working in the open.</p>
+      </div>
+      <div class="about-box blue-accent">
+        <h2>🤝 How I Operate</h2>
+        <div class="principles-list">
+          <div class="principle"><div class="principle-num">1</div><div><h4>Full Transparency</h4><p>Holdings, entry points, creator fees — all disclosed publicly. No shadowy wallets doing weird stuff.</p></div></div>
+          <div class="principle"><div class="principle-num">2</div><div><h4>Ship Fast, Fix in Public</h4><p>Projects launch rough and get better in the open. Wins and Ls both go on X in real time.</p></div></div>
+          <div class="principle"><div class="principle-num">3</div><div><h4>Skin in the Game</h4><p>I hold positions in everything I build. If it fails, I lose too. Incentives stay aligned.</p></div></div>
+          <div class="principle"><div class="principle-num">4</div><div><h4>Community Value First</h4><p>Built so holders capture value — not just the dev wallet. Creator fees are disclosed and fair.</p></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DISCLAIMER -->
+    <div class="panel" id="panel-disclaimer">
+      <div class="panel-header">
+        <div class="panel-emoji">📋</div>
+        <div><div class="panel-title">Disclaimer</div><div class="panel-sub">The boring but important stuff 👇</div></div>
+      </div>
+      <div class="disc-card"><h3>⚠️ Not Financial Advice</h3><p><strong>Nothing on this site, my X, or any channel I run is financial, investment, or trading advice.</strong> It's all informational and entertainment only. Crypto is volatile — prices can drop to zero and you can lose everything.</p></div>
+      <div class="disc-card"><h3>🙋 I'm Not a Financial Advisor</h3><p>I'm an independent builder, not a licensed financial advisor or broker. I hold positions in projects I build and talk about. <strong>I always disclose my financial interest when relevant.</strong> Please do your own research (DYOR) before doing anything with your money.</p></div>
+      <div class="disc-card"><h3>🔍 My Transparency Promise</h3><p>I disclose my wallet positions, creator fees, and any financial interest in projects I discuss. <strong>No hidden insider bags. No secret team wallets.</strong> If I earn from it, I'll tell you.</p></div>
+      <div class="disc-card"><h3>💀 Risk Warning</h3><p>Meme coins are one of the highest-risk things you can put money into. <strong>Most fail. Many are scams.</strong> Never put in more than you're completely OK losing. Past performance means nothing for future results.</p></div>
+    </div>
+
+  </main>
+</div>
+
+<script>
+function fmt(n){
+  if(n==null||isNaN(n))return'—';
+  if(n>=1e6)return'$'+(n/1e6).toFixed(2)+'M';
+  if(n>=1e3)return'$'+(n/1e3).toFixed(1)+'K';
+  return'$'+n.toFixed(2);
+}
+function fmtPrice(n){
+  if(!n)return'—';
+  const v=parseFloat(n);
+  if(v<0.000001)return'$'+v.toExponential(2);
+  if(v<0.01)return'$'+v.toFixed(6);
+  if(v<1)return'$'+v.toFixed(4);
+  return'$'+v.toFixed(2);
+}
+function fmtPct(n){
+  if(n==null||isNaN(n))return'—';
+  return(n>=0?'+':'')+n.toFixed(1)+'%';
+}
+
+async function fetchPair(chain,addr){
+  try{
+    const r=await fetch(`https://api.dexscreener.com/tokens/v1/${chain}/${addr}`);
+    if(r.ok){const d=await r.json();const pairs=Array.isArray(d)?d:(d.pairs||[]);if(pairs.length)return pairs[0];}
+  }catch(e){}
+  try{
+    const r=await fetch(`https://api.dexscreener.com/latest/dex/pairs/${chain}/${addr}`);
+    if(r.ok){const d=await r.json();return d.pair||null;}
+  }catch(e){}
+  return null;
+}
+
+function renderCard(p,pair){
+  const sc={live:'st-live',dev:'st-dev',soon:'st-soon'}[p.status]||'st-soon';
+  const sl={live:'● Live',dev:'⚙️ In Dev',soon:'🔜 Soon'}[p.status]||'Soon';
+
+  // Auto-fetch name/ticker/logo from DexScreener if not manually set
+  const name   = p.name   || pair?.baseToken?.name   || 'Unknown';
+  const ticker = p.ticker || (pair?.baseToken?.symbol ? '$'+pair.baseToken.symbol : '');
+  const logoUrl = p.logo || pair?.info?.imageUrl || '';
+
+  const price=pair?fmtPrice(pair.priceUsd):'—';
+  const vol=pair?fmt(pair.volume?.h24):'—';
+  const mc=pair?fmt(pair.fdv||pair.marketCap):'—';
+  const chg=pair?.priceChange?.h24??null;
+  const chgStr=fmtPct(chg);
+  const chgCls=chg==null?'':(chg>=0?'pos':'neg');
+  const ath=p.ath?fmt(p.ath):'—';
+
+  const firstLetter = name[0] || '?';
+  const logoHtml=logoUrl
+    ?`<img class="card-logo-img" src="${logoUrl}" alt="${name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-placeholder" style="display:none">${firstLetter}</div>`
+    :`<div class="card-logo-placeholder">${firstLetter}</div>`;
+  let links='';
+  if(p.twitter)links+=`<a href="${p.twitter}" target="_blank" class="card-link">🐦 Twitter</a>`;
+  if(p.website)links+=`<a href="${p.website}" target="_blank" class="card-link">🌐 Website</a>`;
+  if(p.dexscreener)links+=`<a href="${p.dexscreener}" target="_blank" class="card-link">📊 Chart</a>`;
+  const tags=(p.tags||[]).map(t=>`<span class="ptag">${t}</span>`).join('');
+  return`<div class="project-card">
+    <div class="card-header">
+      <div style="display:flex;align-items:center;flex-shrink:0">${logoHtml}</div>
+      <div class="card-info">
+        <div class="card-name-row"><div class="card-name">${name}</div><div class="card-ticker">${ticker}</div></div>
+        <div class="card-desc">${p.description}</div>
+      </div>
+      <span class="card-status ${sc}">${sl}</span>
+    </div>
+    <div class="card-metrics">
+      <div class="metric"><div class="metric-label">💰 Price</div><div class="metric-value">${price}</div></div>
+      <div class="metric"><div class="metric-label">📈 24h</div><div class="metric-value ${chgCls}">${chgStr}</div></div>
+      <div class="metric"><div class="metric-label">📊 Volume 24h</div><div class="metric-value">${vol}</div></div>
+      <div class="metric"><div class="metric-label">🏆 ATH Mkt Cap</div><div class="metric-value">${ath}</div></div>
+    </div>
+    <div class="card-footer">${links}<div class="card-tags">${tags}</div></div>
+  </div>`;
+}
+
+function renderSkeleton(p){
+  return`<div class="project-card">
+    <div class="card-header">
+      <div class="card-logo-placeholder">${(p.name||'?')[0]}</div>
+      <div class="card-info">
+        <div class="card-name-row"><div class="card-name">${p.name||'Loading...'}</div><div class="card-ticker">${p.ticker||''}</div></div>
+        <div class="card-desc">${p.description}</div>
+      </div>
+      <span class="card-status st-dev">⏳ Loading...</span>
+    </div>
+    <div class="card-metrics">
+      <div class="metric"><div class="metric-label">💰 Price</div><div class="metric-value loading">···</div></div>
+      <div class="metric"><div class="metric-label">📈 24h</div><div class="metric-value loading">···</div></div>
+      <div class="metric"><div class="metric-label">📊 Volume 24h</div><div class="metric-value loading">···</div></div>
+      <div class="metric"><div class="metric-label">🏆 ATH Mkt Cap</div><div class="metric-value loading">···</div></div>
+    </div>
+  </div>`;
+}
+
+const COMING_CARD=`<div class="coming-card">
+  <span class="coming-emoji">🔧</span>
+  <div class="coming-name">Next project loading...</div>
+  <div class="coming-sub">Follow <a href="https://x.com/lovesickboy24" target="_blank">@lovesickboy24</a> to be first</div>
+</div>`;
+
+let loaded=false;
+async function loadProjects(){
+  if(loaded)return;loaded=true;
+  const grid=document.getElementById('projects-grid');
+  const sub=document.getElementById('projects-sub');
+  grid.innerHTML=PROJECTS.map(renderSkeleton).join('')+COMING_CARD;
+  const pairs=await Promise.all(PROJECTS.map(p=>p.pairAddress?fetchPair(p.chain||'solana',p.pairAddress):Promise.resolve(null)));
+  grid.innerHTML=PROJECTS.map((p,i)=>renderCard(p,pairs[i])).join('')+COMING_CARD;
+  const live=PROJECTS.filter(p=>p.status==='live').length;
+  document.getElementById('stat-count').textContent=live;
+  sub.textContent=`${live} live · ${PROJECTS.length} total · live data via DexScreener`;
+}
+
+function switchTab(id,btn){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+id).classList.add('active');
+  if(btn)btn.classList.add('active');
+  document.querySelector('main').scrollTop=0;
+  if(id==='projects')loadProjects();
+}
+
+const cur=document.getElementById('cur'),curR=document.getElementById('curR');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.transform=`translate(${mx-8}px,${my-8}px)`;});
+(function a(){rx+=(mx-rx-18)*.1;ry+=(my-ry-18)*.1;curR.style.transform=`translate(${rx}px,${ry}px)`;requestAnimationFrame(a);})();
+</script>
+</body>
+</html>
