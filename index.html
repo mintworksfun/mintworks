@@ -3,7 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mintworks 🏭</title>
+<title>MintWorks — Independent Memecoin Studio</title>
+<meta name="description" content="MintWorks is an independent memecoin studio launching coins and crypto tools with a strict commitment to transparency.">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+
+<!-- Open Graph (Facebook, Telegram, Discord, iMessage, LinkedIn) -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mintworks.fun/">
+<meta property="og:title" content="MintWorks — Independent Memecoin Studio">
+<meta property="og:description" content="Launching coins and crypto tools with a strict commitment to transparency. Every project documented publicly from day one.">
+<meta property="og:image" content="https://mintworks.fun/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:site_name" content="MintWorks">
+
+<!-- Twitter / X Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@MintWorksStudio">
+<meta name="twitter:title" content="MintWorks — Independent Memecoin Studio">
+<meta name="twitter:description" content="Launching coins and crypto tools with a strict commitment to transparency. Every project documented publicly from day one.">
+<meta name="twitter:image" content="https://mintworks.fun/og-image.png">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 
@@ -88,18 +112,13 @@ header{
 }
 .logo{display:flex;align-items:center;gap:12px;text-decoration:none;cursor:none;}
 .logo-mascot{
-  width:48px;height:48px;
-  border-radius:50%;
-  background:var(--blue-light);
-  border:2.5px solid var(--blue);
-  box-shadow:0 3px 0 var(--blue);
-  transition:transform .15s,box-shadow .15s;
-  display:flex;align-items:flex-end;justify-content:center;
-  overflow:hidden;
+  width:44px;height:44px;
+  display:flex;align-items:center;justify-content:center;
   flex-shrink:0;
+  transition:transform .2s;
 }
-.logo-mascot img{width:90%;height:auto;object-fit:contain;transform:translateY(2px);}
-.logo:hover .logo-mascot{transform:translateY(2px);box-shadow:0 1px 0 var(--blue);}
+.logo-mascot img{width:100%;height:100%;object-fit:contain;}
+.logo:hover .logo-mascot{transform:rotate(-8deg) scale(1.05);}
 .logo-text{font-family:var(--brand);font-size:32px;font-weight:400;color:var(--text);letter-spacing:0.04em;line-height:1;padding-top:4px;}
 .logo-text .mint{color:var(--orange);}
 .logo-text .works{color:var(--blue-mid);}
@@ -200,17 +219,6 @@ main::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
   margin-bottom:24px;
   position:relative;
   overflow:hidden;
-}
-
-/* Mascot decoration (big in bg) */
-.hero-mascot-bg{
-  position:absolute;
-  right:20px;bottom:-10px;
-  width:220px;height:auto;
-  opacity:0.85;
-  animation:bounce 3s ease-in-out infinite;
-  pointer-events:none;
-  z-index:1;
 }
 
 .home-eyebrow{
@@ -409,8 +417,35 @@ main::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
   .panel{padding:20px 16px;}
   .card-metrics{grid-template-columns:1fr 1fr;}
   .home-hero{padding:28px 24px;}
-  .hero-mascot-bg{width:150px;height:150px;right:-20px;bottom:-20px;}
+  .site-footer{flex-direction:column;gap:10px;text-align:center;padding:20px 16px;}
+  .site-footer-left,.site-footer-right{justify-content:center;}
 }
+
+/* ── FOOTER ── */
+.site-footer{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:16px;flex-wrap:wrap;
+  margin-top:auto;
+  padding:20px 32px;
+  background:var(--surface);
+  border-top:3px solid var(--blue);
+  box-shadow:0 -3px 0 var(--orange);
+  font-size:13px;color:var(--muted);
+}
+.site-footer-left{display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.site-footer-brand{font-family:var(--brand);font-size:18px;letter-spacing:0.04em;line-height:1;padding-top:2px;}
+.site-footer-brand .mint{color:var(--orange);}
+.site-footer-brand .works{color:var(--blue-mid);}
+.site-footer-sep{color:var(--dim);font-weight:700;}
+.site-footer-nfa{
+  color:var(--blue);font-family:var(--display);font-weight:700;font-size:12px;
+  letter-spacing:0.04em;
+  background:var(--yellow-light);border:1.5px solid var(--yellow);
+  padding:3px 10px;border-radius:999px;
+}
+.site-footer-right{display:flex;align-items:center;gap:14px;}
+.site-footer a{color:var(--blue-mid);text-decoration:none;font-weight:700;cursor:none;transition:color .15s;}
+.site-footer a:hover{color:var(--orange);}
 </style>
 </head>
 <body>
@@ -424,15 +459,15 @@ main::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
   <header>
     <a href="#" class="logo" onclick="switchTab('home',document.querySelector('.tab-btn'));return false;">
       <div class="logo-mascot">
-        <img src="mascot.png" alt="MintWorks mascot">
+        <img src="logo.png" alt="MintWorks logo">
       </div>
       <div class="logo-text"><span class="mint">Mint</span><span class="works">Works</span></div>
     </a>
     <div class="header-right">
-      <div class="live-pill"><div class="dot-live"></div> Building right now...</div>
-      <a href="https://x.com/lovesickboy24" target="_blank" class="btn-x">
+      <div class="live-pill"><div class="dot-live"></div> Making coins right now!</div>
+      <a href="https://x.com/MintWorksStudio" target="_blank" class="btn-x">
         <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.73-8.835L1.254 2.25H8.08l4.253 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-        @lovesickboy24
+        @MintWorksStudio
       </a>
     </div>
   </header>
@@ -465,31 +500,28 @@ main::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
     <!-- HOME -->
     <div class="panel active" id="panel-home">
       <div class="home-hero">
-        <!-- Mascot decoration in hero -->
-        <img class="hero-mascot-bg" src="mascot.png" alt="">
-
-        <div class="home-eyebrow">🏭 The Memecoin Factory</div>
-        <div class="home-headline">We Make<br><span class="orange">Coins</span> <span class="blue">Here.</span></div>
+        <div class="home-eyebrow">The Memecoin Factory</div>
+        <div class="home-headline">Building<br><span class="orange">memecoins</span><br>the <span class="blue">right way.</span></div>
         <p class="home-sub">
-          An independent builder shipping meme coins and crypto tools — in public, with full transparency. No VC. No shadow team. Just vibes and on-chain proof.
+          An independent studio building memecoins and crypto tools with full transparency. Every launch documented, every position disclosed, every fee accounted for.
         </p>
         <div class="home-tags">
-          <span class="htag orange-tag">🪙 Meme Coins</span>
-          <span class="htag blue-tag">📱 Telegram Apps</span>
-          <span class="htag orange-tag">🔥 Pump.fun</span>
-          <span class="htag blue-tag">⚡ Solana</span>
-          <span class="htag">👀 100% Transparent</span>
+          <span class="htag orange-tag">Meme Coins</span>
+          <span class="htag blue-tag">Telegram Apps</span>
+          <span class="htag orange-tag">Pump.fun</span>
+          <span class="htag blue-tag">Solana</span>
+          <span class="htag">Fully Transparent</span>
         </div>
       </div>
 
       <div class="home-stats">
         <div class="stat-card">
           <div class="stat-n orange" id="stat-count">—</div>
-          <div class="stat-l">🚀 Projects Live</div>
+          <div class="stat-l">Projects Live</div>
         </div>
         <div class="stat-card blue-accent">
-          <div class="stat-n blue">∞</div>
-          <div class="stat-l">💡 Ideas Brewing</div>
+          <div class="stat-n blue" id="stat-days">—</div>
+          <div class="stat-l">Days Building</div>
         </div>
       </div>
     </div>
@@ -500,7 +532,7 @@ main::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
         <div class="panel-emoji">🚀</div>
         <div>
           <div class="panel-title">Projects</div>
-          <div class="panel-sub" id="projects-sub">Loading the factory floor...</div>
+          <div class="panel-sub" id="projects-sub">Loading live data...</div>
         </div>
       </div>
       <div class="projects-grid" id="projects-grid"></div>
@@ -510,21 +542,21 @@ main::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
     <div class="panel" id="panel-about">
       <div class="panel-header">
         <div class="panel-emoji">👷</div>
-        <div><div class="panel-title">About</div><div class="panel-sub">The person running this factory</div></div>
+        <div><div class="panel-title">About</div><div class="panel-sub">Independent memecoin studio</div></div>
       </div>
       <div class="about-box">
-        <h2>🏭 Who's Behind This?</h2>
-        <p class="about-body-text">Solo crypto builder. I launch meme coins and build tools — <strong>fast, in public, and with zero BS.</strong> No hidden wallets, no undisclosed positions, no surprise rugs.</p>
-        <p class="about-body-text">MintWorks is my studio. Every project here is something I'm personally involved in. If I hold it, I say it. If I earn from it, I disclose it.</p>
-        <p class="about-body-text">No VC. No fifty-person team. Just a builder with <strong>skin in the game</strong>, working in the open.</p>
+        <h2>What is MintWorks?</h2>
+        <p class="about-body-text">MintWorks is an independent memecoin studio launching coins and crypto tools with a strict commitment to transparency. Every project here is documented publicly from day one — launches, updates, positions, and mistakes alike.</p>
+        <p class="about-body-text">The studio operates without outside capital or backroom allocations. <strong>Holdings and creator fees are disclosed</strong>, and nothing on this site or its channels constitutes financial advice.</p>
+        <p class="about-body-text">The goal is simple: build memecoins that respect holders, document everything in public, and let the track record speak for itself over time.</p>
       </div>
       <div class="about-box blue-accent">
-        <h2>🤝 How I Operate</h2>
+        <h2>How We Operate</h2>
         <div class="principles-list">
-          <div class="principle"><div class="principle-num">1</div><div><h4>Full Transparency</h4><p>Holdings, entry points, creator fees — all disclosed publicly. No shadowy wallets doing weird stuff.</p></div></div>
-          <div class="principle"><div class="principle-num">2</div><div><h4>Ship Fast, Fix in Public</h4><p>Projects launch rough and get better in the open. Wins and Ls both go on X in real time.</p></div></div>
-          <div class="principle"><div class="principle-num">3</div><div><h4>Skin in the Game</h4><p>I hold positions in everything I build. If it fails, I lose too. Incentives stay aligned.</p></div></div>
-          <div class="principle"><div class="principle-num">4</div><div><h4>Community Value First</h4><p>Built so holders capture value — not just the dev wallet. Creator fees are disclosed and fair.</p></div></div>
+          <div class="principle"><div class="principle-num">1</div><div><h4>Full Transparency</h4><p>All holdings, entry points, and creator fees are disclosed publicly. No hidden wallets, no undisclosed allocations.</p></div></div>
+          <div class="principle"><div class="principle-num">2</div><div><h4>Ship and Iterate in Public</h4><p>Every launch, update, and pivot is documented on X in real time. Wins and setbacks are shared equally.</p></div></div>
+          <div class="principle"><div class="principle-num">3</div><div><h4>Aligned Incentives</h4><p>The studio holds positions in every project it builds. When the community wins, we win — and vice versa.</p></div></div>
+          <div class="principle"><div class="principle-num">4</div><div><h4>Community-First Design</h4><p>Projects are structured so value accrues to holders, not just to the deployer. Creator fees are disclosed and fair.</p></div></div>
         </div>
       </div>
     </div>
@@ -533,13 +565,27 @@ main::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
     <div class="panel" id="panel-disclaimer">
       <div class="panel-header">
         <div class="panel-emoji">📋</div>
-        <div><div class="panel-title">Disclaimer</div><div class="panel-sub">The boring but important stuff 👇</div></div>
+        <div><div class="panel-title">Disclaimer</div><div class="panel-sub">Please read before interacting with any project</div></div>
       </div>
-      <div class="disc-card"><h3>⚠️ Not Financial Advice</h3><p><strong>Nothing on this site, my X, or any channel I run is financial, investment, or trading advice.</strong> It's all informational and entertainment only. Crypto is volatile — prices can drop to zero and you can lose everything.</p></div>
-      <div class="disc-card"><h3>🙋 I'm Not a Financial Advisor</h3><p>I'm an independent builder, not a licensed financial advisor or broker. I hold positions in projects I build and talk about. <strong>I always disclose my financial interest when relevant.</strong> Please do your own research (DYOR) before doing anything with your money.</p></div>
-      <div class="disc-card"><h3>🔍 My Transparency Promise</h3><p>I disclose my wallet positions, creator fees, and any financial interest in projects I discuss. <strong>No hidden insider bags. No secret team wallets.</strong> If I earn from it, I'll tell you.</p></div>
-      <div class="disc-card"><h3>💀 Risk Warning</h3><p>Meme coins are one of the highest-risk things you can put money into. <strong>Most fail. Many are scams.</strong> Never put in more than you're completely OK losing. Past performance means nothing for future results.</p></div>
+      <div class="disc-card"><h3>Not Financial Advice</h3><p><strong>Nothing on this site or any MintWorks channel constitutes financial, investment, or trading advice.</strong> All content is provided for informational and entertainment purposes only. Cryptocurrency is highly volatile — prices can drop to zero, and you can lose the entire amount you put in.</p></div>
+      <div class="disc-card"><h3>Not a Financial Advisor</h3><p>MintWorks is an independent studio, not a licensed financial advisor or broker. The studio holds positions in projects it builds and discusses. <strong>Financial interests are always disclosed when relevant.</strong> Always do your own research (DYOR) and consult a licensed professional before making financial decisions.</p></div>
+      <div class="disc-card"><h3>Transparency Commitment</h3><p>All wallet positions, creator fees, and financial interests related to MintWorks projects are disclosed publicly. <strong>No hidden insider allocations. No undisclosed team wallets.</strong> If the studio earns from something, it will be stated openly.</p></div>
+      <div class="disc-card"><h3>Risk Warning</h3><p>Memecoins are among the highest-risk assets in existence. <strong>Most fail. Many are outright scams.</strong> Only participate with funds you can afford to lose entirely. Past performance is not indicative of future results.</p></div>
     </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="site-footer-left">
+        <span class="site-footer-brand"><span class="mint">MINT</span><span class="works">WORKS</span></span>
+        <span class="site-footer-sep">·</span>
+        <span>&copy; <span id="footer-year">2026</span> MintWorks Studio</span>
+        <span class="site-footer-sep">·</span>
+        <span class="site-footer-nfa">Not Financial Advice</span>
+      </div>
+      <div class="site-footer-right">
+        <a href="https://x.com/MintWorksStudio" target="_blank" rel="noopener">@MintWorksStudio</a>
+      </div>
+    </footer>
 
   </main>
 </div>
@@ -578,7 +624,7 @@ async function fetchPair(chain,addr){
 
 function renderCard(p,pair){
   const sc={live:'st-live',dev:'st-dev',soon:'st-soon'}[p.status]||'st-soon';
-  const sl={live:'● Live',dev:'⚙️ In Dev',soon:'🔜 Soon'}[p.status]||'Soon';
+  const sl={live:'● Live',dev:'In Dev',soon:'Soon'}[p.status]||'Soon';
 
   // Auto-fetch name/ticker/logo from DexScreener if not manually set
   const name   = p.name   || pair?.baseToken?.name   || 'Unknown';
@@ -598,9 +644,9 @@ function renderCard(p,pair){
     ?`<img class="card-logo-img" src="${logoUrl}" alt="${name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-logo-placeholder" style="display:none">${firstLetter}</div>`
     :`<div class="card-logo-placeholder">${firstLetter}</div>`;
   let links='';
-  if(p.twitter)links+=`<a href="${p.twitter}" target="_blank" class="card-link">🐦 Twitter</a>`;
-  if(p.website)links+=`<a href="${p.website}" target="_blank" class="card-link">🌐 Website</a>`;
-  if(p.dexscreener)links+=`<a href="${p.dexscreener}" target="_blank" class="card-link">📊 Chart</a>`;
+  if(p.twitter)links+=`<a href="${p.twitter}" target="_blank" class="card-link">Twitter</a>`;
+  if(p.website)links+=`<a href="${p.website}" target="_blank" class="card-link">Website</a>`;
+  if(p.dexscreener)links+=`<a href="${p.dexscreener}" target="_blank" class="card-link">Chart</a>`;
   const tags=(p.tags||[]).map(t=>`<span class="ptag">${t}</span>`).join('');
   return`<div class="project-card">
     <div class="card-header">
@@ -612,10 +658,10 @@ function renderCard(p,pair){
       <span class="card-status ${sc}">${sl}</span>
     </div>
     <div class="card-metrics">
-      <div class="metric"><div class="metric-label">💰 Price</div><div class="metric-value">${price}</div></div>
-      <div class="metric"><div class="metric-label">📈 24h</div><div class="metric-value ${chgCls}">${chgStr}</div></div>
-      <div class="metric"><div class="metric-label">📊 Volume 24h</div><div class="metric-value">${vol}</div></div>
-      <div class="metric"><div class="metric-label">🏆 ATH Mkt Cap</div><div class="metric-value">${ath}</div></div>
+      <div class="metric"><div class="metric-label">Price</div><div class="metric-value">${price}</div></div>
+      <div class="metric"><div class="metric-label">24h Change</div><div class="metric-value ${chgCls}">${chgStr}</div></div>
+      <div class="metric"><div class="metric-label">Volume 24h</div><div class="metric-value">${vol}</div></div>
+      <div class="metric"><div class="metric-label">ATH Mkt Cap</div><div class="metric-value">${ath}</div></div>
     </div>
     <div class="card-footer">${links}<div class="card-tags">${tags}</div></div>
   </div>`;
@@ -629,13 +675,13 @@ function renderSkeleton(p){
         <div class="card-name-row"><div class="card-name">${p.name||'Loading...'}</div><div class="card-ticker">${p.ticker||''}</div></div>
         <div class="card-desc">${p.description}</div>
       </div>
-      <span class="card-status st-dev">⏳ Loading...</span>
+      <span class="card-status st-dev">Loading</span>
     </div>
     <div class="card-metrics">
-      <div class="metric"><div class="metric-label">💰 Price</div><div class="metric-value loading">···</div></div>
-      <div class="metric"><div class="metric-label">📈 24h</div><div class="metric-value loading">···</div></div>
-      <div class="metric"><div class="metric-label">📊 Volume 24h</div><div class="metric-value loading">···</div></div>
-      <div class="metric"><div class="metric-label">🏆 ATH Mkt Cap</div><div class="metric-value loading">···</div></div>
+      <div class="metric"><div class="metric-label">Price</div><div class="metric-value loading">···</div></div>
+      <div class="metric"><div class="metric-label">24h Change</div><div class="metric-value loading">···</div></div>
+      <div class="metric"><div class="metric-label">Volume 24h</div><div class="metric-value loading">···</div></div>
+      <div class="metric"><div class="metric-label">ATH Mkt Cap</div><div class="metric-value loading">···</div></div>
     </div>
   </div>`;
 }
@@ -643,7 +689,7 @@ function renderSkeleton(p){
 const COMING_CARD=`<div class="coming-card">
   <span class="coming-emoji">🔧</span>
   <div class="coming-name">Next project loading...</div>
-  <div class="coming-sub">Follow <a href="https://x.com/lovesickboy24" target="_blank">@lovesickboy24</a> to be first</div>
+  <div class="coming-sub">Follow <a href="https://x.com/MintWorksStudio" target="_blank">@MintWorksStudio</a> to be first</div>
 </div>`;
 
 let loaded=false;
@@ -667,6 +713,19 @@ function switchTab(id,btn){
   document.querySelector('main').scrollTop=0;
   if(id==='projects')loadProjects();
 }
+
+// Days Building counter
+const STUDIO_START = new Date('2026-04-23'); // update this to your official start date
+function updateDaysBuilding(){
+  const days = Math.floor((Date.now() - STUDIO_START.getTime()) / 86400000);
+  const el = document.getElementById('stat-days');
+  if(el) el.textContent = Math.max(0, days);
+}
+updateDaysBuilding();
+
+// Footer year auto-update
+const yearEl = document.getElementById('footer-year');
+if(yearEl) yearEl.textContent = new Date().getFullYear();
 
 const cur=document.getElementById('cur'),curR=document.getElementById('curR');
 let mx=0,my=0,rx=0,ry=0;
